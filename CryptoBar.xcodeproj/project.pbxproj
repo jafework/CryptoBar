@@ -11,9 +11,13 @@
 		7C48AF67200444F40031BE9F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C48AF66200444F40031BE9F /* ViewController.swift */; };
 		7C48AF69200444F40031BE9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C48AF68200444F40031BE9F /* Assets.xcassets */; };
 		7C48AF6C200444F40031BE9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C48AF6A200444F40031BE9F /* Main.storyboard */; };
+		F7A4793D9312CF2AAA747016 /* Pods_CryptoBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75BFDE79FBED33439CB5ECDE /* Pods_CryptoBar.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		54C544816E0B2EA08FDD592D /* Pods-CryptoBar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoBar.release.xcconfig"; path = "Pods/Target Support Files/Pods-CryptoBar/Pods-CryptoBar.release.xcconfig"; sourceTree = "<group>"; };
+		65704E06D07A2A65C8BB6D48 /* Pods-CryptoBar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoBar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CryptoBar/Pods-CryptoBar.debug.xcconfig"; sourceTree = "<group>"; };
+		75BFDE79FBED33439CB5ECDE /* Pods_CryptoBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C48AF61200444F40031BE9F /* CryptoBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C48AF64200444F40031BE9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C48AF66200444F40031BE9F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -28,17 +32,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7A4793D9312CF2AAA747016 /* Pods_CryptoBar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		56452B6471D38017AAD22608 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				75BFDE79FBED33439CB5ECDE /* Pods_CryptoBar.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7C48AF58200444F40031BE9F = {
 			isa = PBXGroup;
 			children = (
 				7C48AF63200444F40031BE9F /* CryptoBar */,
 				7C48AF62200444F40031BE9F /* Products */,
+				F3E488DCCE5F9C4C6A97C073 /* Pods */,
+				56452B6471D38017AAD22608 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,6 +78,15 @@
 			path = CryptoBar;
 			sourceTree = "<group>";
 		};
+		F3E488DCCE5F9C4C6A97C073 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				65704E06D07A2A65C8BB6D48 /* Pods-CryptoBar.debug.xcconfig */,
+				54C544816E0B2EA08FDD592D /* Pods-CryptoBar.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -70,9 +94,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7C48AF71200444F40031BE9F /* Build configuration list for PBXNativeTarget "CryptoBar" */;
 			buildPhases = (
+				899C079A86C45B58BF774A3E /* [CP] Check Pods Manifest.lock */,
 				7C48AF5D200444F40031BE9F /* Sources */,
 				7C48AF5E200444F40031BE9F /* Frameworks */,
 				7C48AF5F200444F40031BE9F /* Resources */,
+				2E282171E8A32743200D0A7E /* [CP] Embed Pods Frameworks */,
+				ACA0E03A348C340B6DE3909A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -128,6 +155,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2E282171E8A32743200D0A7E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CryptoBar/Pods-CryptoBar-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		899C079A86C45B58BF774A3E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		ACA0E03A348C340B6DE3909A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CryptoBar/Pods-CryptoBar-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7C48AF5D200444F40031BE9F /* Sources */ = {
@@ -261,6 +336,7 @@
 		};
 		7C48AF72200444F40031BE9F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65704E06D07A2A65C8BB6D48 /* Pods-CryptoBar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CryptoBar/CryptoBar.entitlements;
@@ -276,6 +352,7 @@
 		};
 		7C48AF73200444F40031BE9F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 54C544816E0B2EA08FDD592D /* Pods-CryptoBar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CryptoBar/CryptoBar.entitlements;
