@@ -14,15 +14,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     var statusItem:NSStatusItem?
     
-    var eth:Double = 0
-    var btc:Double = 0
-    
     var prices:[String:Double] = [:]
     
-    var pusher:Pusher? = nil
-    var chan:PusherChannel? = nil
-    var chan2:PusherChannel? = nil
+    let tickers:[String:String] = [
+        "live_trades_ethusd":"ETH",
+        "live_trades":"BTC"
+    ]
     
+    let kPusherKey = "de504dc5763aeef9ff52"
+    var pusher:Pusher? = nil
     var channels:[PusherChannel?] = []
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -37,42 +37,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             statusItem.menu = menu
         }
         
-        pusher = Pusher(key: "de504dc5763aeef9ff52")
+        pusher = Pusher(key: kPusherKey)
         
-        chan = pusher?.subscribe(channelName: "live_trades_ethusd")
-        chan?.bind(eventName: "trade", callback: { data in
-            
-            if let result:[String:AnyObject] = data as? Dictionary {
-                let value:Double = result["price"] as! Double
-                self.eth = value
-                
-                self.updateMenu()
-            }
-            
-            print("\(String(describing: data))")
-        })
-        
-        chan2 = pusher?.subscribe(channelName: "live_trades")
-        
-        chan2?.bind(eventName: "trade", callback: { data in
-            
-            if let result:[String:AnyObject] = data as? Dictionary {
-                let value:Double = result["price"] as! Double
-                self.btc = value
-                
-                self.updateMenu()
-            }
-            
-            print("\(String(describing: data))")
-        })
+        tickers.forEach { (ticker, value) in
+            let channel = pusher?.subscribe(channelName: ticker)
+            channel?.bind(eventName: "trade", callback:{ data in
+                if let result:[String:AnyObject] = data as? Dictionary {
+                    if let value:Double = result["price"] as? Double {
+                        self.prices[ticker] = value
+                        self.updateMenu()
+                    }
+                }
+            })
+            channels.append(channel)
+        }
         
         pusher?.connect()
     }
     
-    func BuildChannel(code:String, name:String, callback:(@escaping (Any?) -> (Void))) -> PusherChannel? {
-        let channel = pusher?.subscribe(channelName: name)
-        channel?.bind(eventName: "trade", callback: callback)
-        return channel
+    func tickerToName(ticker:String) -> String{
+        var name = ""
+        if let value:String = tickers[ticker] {
+            name = value
+        }
+        return name
     }
     
     func updateMenu() {
@@ -81,12 +69,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let formatter = NumberFormatter()
             formatter.numberStyle = .currency
             
-            let eth:String? = formatter.string(from: NSNumber(value:self.eth))
-            let btc:String? = formatter.string(from: NSNumber(value:self.btc))
+            var texts:[String] = []
             
-            if let eth = eth, let btc = btc {
-                button.title = "BTC \(btc) | ETH \(eth)"
-            }
+            self.prices.forEach({ (key, value) in
+                let num:NSNumber = NSNumber(value:value)
+                if let price:String = formatter.string(from: num){
+                    texts.append("\(tickerToName(ticker: key)) \(price)")
+                }
+            })
+            
+            button.title = texts.joined(separator: " | ")
         }
     }
 
